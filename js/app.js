@@ -38,59 +38,75 @@ apl.controller('MainCtrl', function($scope, localStorageService, GetMovie){
 
     $scope.searchMovie = function(first, second){
 
-        actors = [];
-        sameAct = [];
 
-        director = [];
-        sameDir = [];
+        if ( first.toLowerCase() != second.toLowerCase() ) {
 
-        $scope.cast = GetMovie.get({movie: first}).$promise.then(function(movieDetail){
+            actors = [];
+            sameAct = [];
 
-            $scope.getData(movieDetail);
+            director = [];
+            sameDir = [];
 
-        
-            GetMovie.get({movie: second}).$promise.then(function(movieDetail){
+            $scope.cast = GetMovie.get({movie: first}).$promise.then(function(movieDetail){
 
                 $scope.getData(movieDetail);
 
+            
+                GetMovie.get({movie: second}).$promise.then(function(movieDetail){
 
-                for(var i = 0; i <= actors.length - 1; i++){
-                    if ( actors[i] === actors[ i + 1 ]) {
-                        sameAct.push(actors[i]);
+                    $scope.getData(movieDetail);
+
+
+                    for(var i = 0; i <= actors.length - 1; i++){
+                        if ( actors[i] === actors[ i + 1 ]) {
+                            sameAct.push(actors[i]);
+                        }
                     }
-                }
 
-                if ( sameAct.length ) {
-                    $scope.sameActors = sameAct;
-                } else {
-                    $scope.sameActors = false;
-                }
-
-
-                for(var i = 0; i <= director.length - 1; i++){
-                    if ( director[i] === director[ i + 1 ] ) {
-                        sameDir.push(director[i]);
+                    if ( sameAct.length ) {
+                        $scope.sameActors = sameAct;
+                    } else {
+                        $scope.sameActors = false;
                     }
-                }
-
-                if ( sameDir.length ) {
-                    $scope.sameDir = sameDir;
-                } else {
-                    $scope.sameDir = false;
-                }
 
 
-                if ( $scope.sameDir === false && $scope.sameActors === false ) {
-                    setTimeout(function(){
-                        alert('no common cast');
-                    }, 200);
-                }
+                    for(var i = 0; i <= director.length - 1; i++){
+                        if ( director[i] === director[ i + 1 ] ) {
+                            sameDir.push(director[i]);
+                        }
+                    }
+
+                    if ( sameDir.length ) {
+                        $scope.sameDir = sameDir;
+                    } else {
+                        $scope.sameDir = false;
+                    }
 
 
-                $scope.goStorage(first, second);
+                    if ( $scope.sameDir === false && $scope.sameActors === false ) {
+                        setTimeout(function(){
+                            alert('No common cast');
+                        }, 200);
 
+                        $scope.msg = "No common cast";
+
+                    } else {
+                        $scope.msg = '';
+                    }
+
+
+                    $scope.goStorage(first, second);
+
+                });
             });
-        });
+
+        } else {
+
+            $scope.sameActors = 0;
+            $scope.sameDir = 0;
+            $scope.msg = "This is the same title";
+            
+        }
 
 
 
@@ -99,37 +115,19 @@ apl.controller('MainCtrl', function($scope, localStorageService, GetMovie){
 
     $scope.required = true;
 
-    $scope.noHits = function(){
-
-        if ( $scope.sameDir === false && $scope.sameActors === false ) {
-            return true;
-        }
-        
-    }
-
 
     $scope.goStorage = function(movie1, movie2){
 
-        var newmovies = {
-                'firstMovie': movie1,
-                'secondMovie': movie2
-        };
+        var lastmovies = localStorageService.get('lastmovies') || [];
 
-        var oldmovies = localStorageService.get('lastmovies') || [];
-        if ( oldmovies.length > 5 ) {
-            oldmovies.pop();
-            oldmovies.pop();
+        if ( lastmovies.length > 5 ) {
+            lastmovies.splice(-2, 2);
         }
 
-        var kelp = [];
-
-        angular.forEach( newmovies, function(key, value){
-            this.push( key );
-        }, kelp );
-
-        var lastmovies = kelp.concat(oldmovies);
+        lastmovies.unshift(movie1, movie2);
 
         localStorageService.set('lastmovies', lastmovies);
+
         $scope.getStorage();
 
     }
