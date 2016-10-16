@@ -1,0 +1,30 @@
+{
+  "name": "search",
+  "version": "0.1.0",
+  "description": "search in imdb",
+  "main": "index.js",
+  "dependencies": {
+    "grunt": "^1.0.1"
+  },
+  "devDependencies": {
+    "angular": "^1.5.8",
+    "angular-local-storage": "^0.5.0",
+    "angular-resource": "^1.5.8",
+    "grunt": "^1.0.1",
+    "grunt-contrib-connect": "^1.0.2",
+    "grunt-contrib-jshint": "^1.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/triquilibrium/searchimdb.git"
+  },
+  "author": "K",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/triquilibrium/searchimdb/issues"
+  },
+  "homepage": "https://github.com/triquilibrium/searchimdb"
+}

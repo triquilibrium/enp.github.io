@@ -1,0 +1,15 @@
+.form .form__input {
+    margin-bottom: 10px;
+    text-transform: capitalize;
+}
+
+.score .score__list {
+    display: inline-block;
+    padding: 0 5%;
+    vertical-align: top;
+}
+
+.latest-search .latest-search__list {
+    text-transform: capitalize;
+    font-size: 13px;
+}

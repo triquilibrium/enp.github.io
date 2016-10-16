@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html ng-app="apiapp">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=9">
+    <title>Test</title>
+    <meta content="maximum-scale=1.0, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="well">
+    <div class="container" ng-controller="MainCtrl">
+        
+        <div class="row">
+            <div class="col-xs-12">
+
+                <h3>Compare movies</h3>
+                <br>
+            </div>
+        </div>
+
+        <div class="row">  
+            <div class="col-md-3">
+                <div class="form">
+                    
+                    <form ng-submit="searchMovie(movie1, movie2)" class="form-horizontal">
+
+                        <input type="text" placeholder="First movie title" ng-model="movie1" ng-required="required" class="form-control form__input">
+
+                        <input type="text" placeholder="Second movie title" ng-model="movie2" ng-required="required" class="form-control form__input">
+
+                        <button type="submit" class="btn btn-info">Compare</button>
+                    </form>
+
+                </div><!-- /.form -->
+            </div>
+
+   
+            <div class="col-md-8 col-md-offset-1">
+                <div class="score">
+                    
+                    <div ng-show="sameActors" class="score__list">
+
+                        <h4>Common actors:</h4>
+                        <ul class="list-unstyled">
+                            <li ng-repeat="actor in sameActors">{{ actor }}</li>
+                        </ul>    
+
+                    </div>
+                    
+                    <div ng-show="sameDir" class="score__list">
+
+                        <h4>Common director:</h4>
+                        <ul class="list-unstyled">
+                            <li ng-repeat="dir in sameDir">{{ dir }}</li>
+                        </ul>
+
+                    </div>
+                    
+                    <div ng-show="noHits()" class="score__list">
+
+                        <p>no common cast</p>
+
+                    </div>
+
+                </div>
+            </div><!-- /.score -->
+        </div><!-- /.row -->
+        <hr>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="latest-search" ng-show="showStorage">
+                    
+                    <h5>Latest searches:</h5>
+                    <ul ng-init="getStorage()" class="list-unstyled">
+                        <li ng-repeat="last in showStorage track by $index" class="latest-search__list">
+                            {{ last }}<br>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div><!-- /.row -->
+   
+    </div><!-- /.container -->
+
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="node_modules/angular-resource/angular-resource.min.js"></script>
+    <script src="node_modules/angular-local-storage/dist/angular-local-storage.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
