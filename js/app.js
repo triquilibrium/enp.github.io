@@ -55,7 +55,7 @@ apl.controller('MainCtrl', function($scope, localStorageService, GetMovie){
 
 
                 for(var i = 0; i <= actors.length - 1; i++){
-                    if ( actors[i] === actors[i + 1 ]) {
+                    if ( actors[i] === actors[ i + 1 ]) {
                         sameAct.push(actors[i]);
                     }
                 }
@@ -68,7 +68,7 @@ apl.controller('MainCtrl', function($scope, localStorageService, GetMovie){
 
 
                 for(var i = 0; i <= director.length - 1; i++){
-                    if ( director[i] === director[i + 1 ] ) {
+                    if ( director[i] === director[ i + 1 ] ) {
                         sameDir.push(director[i]);
                     }
                 }
@@ -100,13 +100,16 @@ apl.controller('MainCtrl', function($scope, localStorageService, GetMovie){
     $scope.required = true;
 
     $scope.noHits = function(){
+
         if ( $scope.sameDir === false && $scope.sameActors === false ) {
             return true;
         }
+        
     }
 
 
     $scope.goStorage = function(movie1, movie2){
+
         var newmovies = {
                 'firstMovie': movie1,
                 'secondMovie': movie2
@@ -133,7 +136,9 @@ apl.controller('MainCtrl', function($scope, localStorageService, GetMovie){
 
 
     $scope.getStorage = function() {
-        $scope.showStorage = localStorageService.get('lastmovies');  
+
+        $scope.showStorage = localStorageService.get('lastmovies'); 
+
     }
 
 });
