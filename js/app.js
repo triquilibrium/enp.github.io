@@ -140,7 +140,7 @@ apl.controller('MainCtrl', function($scope, localStorageService, GetMovie){
 
 
 apl.factory('GetMovie', function($resource){
-    return $resource('http://www.omdbapi.com/?t=:movie', {movie: '@movie'});
+    return $resource('https://www.omdbapi.com/?t=:movie', {movie: '@movie'});
 });
 
 
