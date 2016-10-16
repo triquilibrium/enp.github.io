@@ -38,7 +38,6 @@ apl.controller('MainCtrl', function($scope, localStorageService, GetMovie){
 
     $scope.searchMovie = function(first, second){
 
-
         if ( first.toLowerCase() != second.toLowerCase() ) {
 
             actors = [];
@@ -105,10 +104,8 @@ apl.controller('MainCtrl', function($scope, localStorageService, GetMovie){
             $scope.sameActors = 0;
             $scope.sameDir = 0;
             $scope.msg = "This is the same title";
-            
+
         }
-
-
 
     } // end: searchMovie()
 
@@ -140,6 +137,7 @@ apl.controller('MainCtrl', function($scope, localStorageService, GetMovie){
     }
 
 });
+
 
 apl.factory('GetMovie', function($resource){
     return $resource('http://www.omdbapi.com/?t=:movie', {movie: '@movie'});
