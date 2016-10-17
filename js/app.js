@@ -38,7 +38,12 @@ apl.controller('MainCtrl', function($scope, localStorageService, GetMovie){
 
     $scope.searchMovie = function(first, second){
 
+        $scope.sameActors = 0;
+        $scope.sameDir = 0;
+
         if ( first.toLowerCase() != second.toLowerCase() ) {
+            
+            $scope.msg = 'wait for it...';
 
             actors = [];
             sameAct = [];
@@ -52,6 +57,8 @@ apl.controller('MainCtrl', function($scope, localStorageService, GetMovie){
 
             
                 GetMovie.get({movie: second}).$promise.then(function(movieDetail){
+                    
+                    $scope.msg = '';
 
                     $scope.getData(movieDetail);
 
@@ -87,7 +94,7 @@ apl.controller('MainCtrl', function($scope, localStorageService, GetMovie){
                             alert('No common cast');
                         }, 200);
 
-                        $scope.msg = "No common cast";
+                        $scope.msg = 'No common cast';
 
                     } else {
                         $scope.msg = '';
@@ -101,9 +108,7 @@ apl.controller('MainCtrl', function($scope, localStorageService, GetMovie){
 
         } else {
 
-            $scope.sameActors = 0;
-            $scope.sameDir = 0;
-            $scope.msg = "This is the same title";
+            $scope.msg = 'This is the same title';
 
         }
 
