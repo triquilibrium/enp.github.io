@@ -13,3 +13,7 @@
     text-transform: capitalize;
     font-size: 13px;
 }
+
+[ng\:cloak], [ng-cloak], .ng-cloak {
+    display: none;
+}
