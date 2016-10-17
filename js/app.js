@@ -58,10 +58,10 @@ apl.controller('MainCtrl', function($scope, localStorageService, GetMovie){
             
                 GetMovie.get({movie: second}).$promise.then(function(movieDetail){
                     
-                    $scope.msg = '';
 
                     $scope.getData(movieDetail);
 
+                    $scope.msg = '';
 
                     for(var i = 0; i <= actors.length - 1; i++){
                         if ( actors[i] === actors[ i + 1 ]) {
