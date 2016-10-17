@@ -90,9 +90,9 @@ apl.controller('MainCtrl', function($scope, localStorageService, GetMovie){
 
 
                     if ( $scope.sameDir === false && $scope.sameActors === false ) {
-                        setTimeout(function(){
-                            alert('No common cast');
-                        }, 200);
+                        // setTimeout(function(){
+                        //     alert('No common cast');
+                        // }, 200);
 
                         $scope.msg = 'No common cast';
 
