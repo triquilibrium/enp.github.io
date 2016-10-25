@@ -7,7 +7,7 @@ var apl = angular.module('apiapp', [
 );
 
 apl.controller('MainCtrl', function($scope, localStorageService, GetMovie){
-
+        
     var actors;
     var sameAct;
     var director;
@@ -55,10 +55,8 @@ apl.controller('MainCtrl', function($scope, localStorageService, GetMovie){
 
                 $scope.getData(movieDetail);
 
-            
                 GetMovie.get({movie: second}).$promise.then(function(movieDetail){
                     
-
                     $scope.getData(movieDetail);
 
                     $scope.msg = '';
@@ -136,9 +134,7 @@ apl.controller('MainCtrl', function($scope, localStorageService, GetMovie){
 
 
     $scope.getStorage = function() {
-
         $scope.showStorage = localStorageService.get('lastmovies'); 
-
     }
 
 });
